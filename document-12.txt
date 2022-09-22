@@ -1,0 +1,89 @@
+DATABASE MANAGEMENT SYSTEMS
+LAB ACTIVITY-12
+
+1.Find the courses which have taken by students
+mysql> select * from course;
++----------+------------+------------+-------+--------+-------+
+| courseno | coursedesc | coursetype | semno | hallno | facno |
++----------+------------+------------+-------+--------+-------+
+| c1       | dbms       | c          | 2     | 3      | f1    |
+| c2       | ds         | c          | 1     | 4      | f2    |
+| c3       | networks   | c          | 3     | 5      | f3    |
++----------+------------+------------+-------+--------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student;
++-------+-------+--------+------------+------------+-----------+----------+
+| regno | name  | gender | dob        | mobileno   | city      | courseno |
++-------+-------+--------+------------+------------+-----------+----------+
+|   123 | bino  | m      | 2022-09-08 | 1234567891 | chennai   | c1       |
+|   124 | ram   | m      | 2004-09-08 | 1231231231 | bangalore | c1       |
+|   125 | nisha | f      | 2008-09-18 | 1131231231 | hyderabad | c2       |
+|   191 | ganga | f      | 2002-02-22 | 1423123423 | cochin    | c2       |
++-------+-------+--------+------------+------------+-----------+----------+
+4 rows in set (0.00 sec)
+mysql> select courseno from course where exists(select regno from student where course.courseno=student.courseno);
++----------+
+| courseno |
++----------+
+| c1       |
+| c2       |
++----------+
+
+
+rows in set (0.04 sec)
+
+
+
+2.Find the Faculties to whom courses are assigned
+ mysql> select * from faculty;
++-------+---------+--------+------------+------------+------------+--------+
+| facno | facname | gender | dob        | doj        | mobileno   | deptno |
++-------+---------+--------+------------+------------+------------+--------+
+| f1    | kavya   | f      | 2003-12-12 | 2022-06-07 | 1233214566 | d1     |
+| f2    | kamu    | m      | 1997-08-07 | 2021-03-04 |  222345521 | d2     |
+| f3    | murugan | m      | 1998-07-07 | 2020-09-08 | 1223234445 | d1     |
+| f4    | kannan  | m      | 2001-10-01 | 2022-06-07 | 1233214563 | d2     |
++-------+---------+--------+------------+------------+------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from course;
++----------+------------+------------+-------+--------+-------+
+| courseno | coursedesc | coursetype | semno | hallno | facno |
++----------+------------+------------+-------+--------+-------+
+| c1       | dbms       | c          | 2     | 3      | f1    |
+| c2       | ds         | c          | 1     | 4      | f2    |
+| c3       | networks   | c          | 3     | 5      | f3    |
++----------+------------+------------+-------+--------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select facno from faculty where facno =any(select facno from course);
++-------+
+| facno |
++-------+
+| f1    |
+| f3    |
+| f2    |
++-------+
+3 rows in set (0.10 sec)
+
+3.Find the d1 dept employess whose salary is greater than all the d2 dept employees salaries
+
+mysql> select * from faculty;
++-------+---------+--------+------------+------------+------------+--------+--------+
+| facno | facname | gender | dob        | doj        | mobileno   | deptno | salary |
++-------+---------+--------+------------+------------+------------+--------+--------+
+| f1    | kavya   | f      | 2003-12-12 | 2022-06-07 | 9841278965 | d1     |  99000 |
+| f2    | kamu    | m      | 1997-08-07 | 2021-03-04 | 9842732965 | d2     |  56789 |
+| f3    | murugan | m      | 1998-07-07 | 2020-09-08 | 8842732965 | d1     |  13000 |
+| f4    | kannan  | m      | 2001-10-01 | 2012-09-09 | 7842732965 | d2     |  67000 |
++-------+---------+--------+------------+------------+------------+--------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select facno from faculty where salary >all (select salary from faculty where deptno='d2');
++-------+
+| facno |
++-------+
+| f1    |
++-------+
+1 row in set (0.00 sec)
