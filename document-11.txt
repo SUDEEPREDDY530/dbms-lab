@@ -1,0 +1,46 @@
+
+DATABASE MANAGEMENT SYSTEMS
+LAB ACTIVITY-11
+
+
+Creating new table from old table
+
+mysql> create table course2 select * from course;
+Query OK, 4 rows affected (0.12 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from course2;
++----------+---------------+------------+-------+--------+-------+
+| courseno | coursedesc    | coursetype | semno | hallno | facno |
++----------+---------------+------------+-------+--------+-------+
+| c1       | dbms          | c          | 2     | 3      | f1    |
+| c2       | ds            | c          | 1     | 4      | f2    |
+| c3       | networks      | c          | 3     | 5      | f3    |
+| c4       | r programming | c          | 1     | NULL   | f2    |
++----------+---------------+------------+-------+--------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from course;
++----------+---------------+------------+-------+--------+-------+
+| courseno | coursedesc    | coursetype | semno | hallno | facno |
++----------+---------------+------------+-------+--------+-------+
+| c1       | dbms          | c          | 2     | 3      | f1    |
+| c2       | ds            | c          | 1     | 4      | f2    |
+| c3       | networks      | c          | 3     | 5      | f3    |
+| c4       | r programming | c          | 1     | NULL   | f2    |
++----------+---------------+------------+-------+--------+-------+
+4 rows in set (0.00 sec)
+ mysql> insert into course5 select courseno,coursedesc from course;
+Query OK, 4 rows affected (0.04 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from course5;
++----------+---------------+
+| courseno | coursename    |
++----------+---------------+
+| c1       | dbms          |
+| c2       | ds            |
+| c3       | networks      |
+| c4       | r programming |
++----------+---------------+
+rows in set (0.00 sec)
