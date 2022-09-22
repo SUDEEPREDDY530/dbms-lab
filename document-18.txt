@@ -1,0 +1,52 @@
+DATABASE MANAGEMENT SYSTEMS
+LAB ACTIVITY-18
+
+EX NO:18
+                    CURSOR
+Write a cursor to display name and marks of all students who have passed in the exam.
+
+CODE:
+
+mysql> select * from student;
+    -> $$
++-------+---------+--------+------------+------------+-----------+----------+-------+
+| regno | name    | gender | dob        | mobileno   | city      | courseno | score |
++-------+---------+--------+------------+------------+-----------+----------+-------+
+|   123 | magesh  | m      | 2022-09-08 | 1234567891 | chennai   | c1       |    35 |
+|   124 | reshma  | m      | 2004-09-08 | 1231231231 | bangalore | c1       |    45 |
+|   125 | nisha   | f      | 2008-09-18 | 1131231231 | hyderabad | c2       |    65 |
+|   191 | sathish | f      | 2002-02-22 | 1423123423 | salem     | c2       |    99 |
+|   200 | gans    | m      | 1997-08-09 | 1233456644 | chennai   | c1       |    56 |
++-------+---------+--------+------------+------------+-----------+----------+-------+
+5 rows in set (0.00 sec)
+
+mysql> call pass_stude();
+    -> $$
++-------+--------+
+| name1 | score1 |
++-------+--------+
+| nisha |     65 |
++-------+--------+
+1 row in set (0.00 sec)
+
++---------+--------+
+| name1   | score1 |
++---------+--------+
+| sathish |     99 |
++---------+--------+
+1 row in set (0.01 sec)
+
++-------+--------+
+| name1 | score1 |
++-------+--------+
+| gans  |     56 |
++-------+--------+
+1 row in set (0.01 sec)
+
++-------+--------+
+| name1 | score1 |
++-------+--------+
+| gans  |     56 |
++-------+--------+
+1 row in set (0.01 sec)
+Query OK, 0 rows affected, 1 warning (0.02 sec
