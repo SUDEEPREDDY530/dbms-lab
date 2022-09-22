@@ -1,0 +1,256 @@
+DATABASE MANAGEMENT SYSTEMS
+LAB ACTIVITY-16,17
+
+Ex.No 16
+                REPEAT LOOP AND WHILE LOOP IN PL/SQL
+
+Write a PL?SQL program to print “hello”
+
+CODE:
+mysql> create procedure p2()
+    -> begin
+    -> select ' hello';
+    -> end;
+    -> $$
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> call p2();
+    -> $$
++---------+
+| hello |
++---------+
+1 row in set (0.00 sec)
+
+Write a PL/SQL repeat loop to print numbers from 1 to 10
+
+CODE:
+mysql> create procedure p4()
+    -> begin
+    -> set @i = 1;
+    -> myloop: loop
+    -> select @i;
+    -> set @i = @i + 1;
+    -> if @i > 10 then
+    ->  leave myloop;
+    -> end if;
+    -> end loop;
+    -> end;
+    -> $$
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call p4();
+    -> $$
++------+
+| @i   |
++------+
+|    1 |
++------+
+1 row in set (0.03 sec)
+
++------+
+| @i   |
++------+
+|    2 |
++------+
+1 row in set (0.04 sec)
+
++------+
+| @i   |
++------+
+|    3 |
++------+
+1 row in set (0.05 sec)
+
++------+
+| @i   |
++------+
+|    4 |
++------+
+1 row in set (0.05 sec)
+
++------+
+| @i   |
++------+
+|    5 |
++------+
+1 row in set (0.06 sec)
+
++------+
+| @i   |
++------+
+|    6 |
++------+
+1 row in set (0.06 sec)
+
++------+
+| @i   |
++------+
+|    7 |
++------+
+1 row in set (0.06 sec)
+
++------+
+| @i   |
++------+
+|    8 |
++------+
+1 row in set (0.06 sec)
+
++------+
+| @i   |
++------+
+|    9 |
++------+
+1 row in set (0.06 sec)
+
++------+
+| @i   |
++------+
+|   10 |
++------+
+1 row in set (0.07 sec)
+Query OK, 0 rows affected (0.07 sec)
+
+Write PL/SQL While  loop to print numbers from 1 to 9.
+
+CODE:
+mysql> create procedure p5()
+    -> begin
+    -> set @i = 1;
+    -> while @i < 10 do
+    -> select @i;
+    -> set @i = @i + 1;
+    -> end while;
+    -> end;
+    -> $$
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call p5();
+    -> $$
++------+
+| @i   |
++------+
+|    1 |
++------+
+1 row in set (0.00 sec)
+
++------+
+| @i   |
++------+
+|    2 |
++------+
+1 row in set (0.01 sec)
+
++------+
+| @i   |
++------+
+|    3 |
++------+
+1 row in set (0.01 sec)
+
++------+
+| @i   |
++------+
+|    4 |
++------+
+1 row in set (0.01 sec)
+
++------+
+| @i   |
++------+
+|    5 |
++------+
+1 row in set (0.01 sec)
+
++------+
+| @i   |
++------+
+|    6 |
++------+
+1 row in set (0.02 sec)
+
++------+
+| @i   |
++------+
+|    7 |
++------+
+1 row in set (0.02 sec)
+
++------+
+| @i   |
++------+
+|    8 |
++------+
+1 row in set (0.03 sec)
+
++------+
+| @i   |
++------+
+|    9 |
++------+
+1 row in set (0.03 sec)
+
+Query OK, 0 rows affected (0.03 sec)
+
+
+
+
+Ex.No : 17
+TCL COMMANDS
+CODE:
+mysql> update student set score=99 where regno=191;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> savepoint s1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> update student set score=99 where regno=200;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> rollback to s1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from student;
++-------+---------+--------+------------+------------+-----------+----------+-------+
+| regno | name    | gender | dob        | mobileno   | city      | courseno | score |
++-------+---------+--------+------------+------------+-----------+----------+-------+
+|   123 | magesh  | m      | 2022-09-08 | 1234567891 | chennai   | c1       |    95 |
+|   124 | reshma  | m      | 2004-09-08 | 1231231231 | bangalore | c1       |    45 |
+|   125 | nisha   | f      | 2008-09-18 | 1131231231 | hyderabad | c2       |    65 |
+|   191 | sathish | f      | 2002-02-22 | 1423123423 | salem     | c2       |    99 |
+|   200 | gans    | m      | 1997-08-09 | 1233456644 | chennai   | c1       |    56 |
++-------+---------+--------+------------+------------+-----------+----------+-------+
+5 rows in set (0.00 sec)
+
+
+
+mysql> commit;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> select * from student;
++-------+---------+--------+------------+------------+-----------+----------+-------+
+| regno | name    | gender | dob        | mobileno   | city      | courseno | score |
++-------+---------+--------+------------+------------+-----------+----------+-------+
+|   123 | magesh  | m      | 2022-09-08 | 1234567891 | chennai   | c1       |    95 |
+|   124 | reshma  | m      | 2004-09-08 | 1231231231 | bangalore | c1       |    45 |
+|   125 | nisha   | f      | 2008-09-18 | 1131231231 | hyderabad | c2       |    65 |
+|   191 | sathish | f      | 2002-02-22 | 1423123423 | salem     | c2       |    99 |
+|   200 | gans    | m      | 1997-08-09 | 1233456644 | chennai   | c1       |    56 |
++-------+---------+--------+------------+------------+-----------+----------+-------+
+5 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+mysql> select * from student;
++-------+---------+--------+------------+------------+-----------+----------+-------+
+| regno | name    | gender | dob        | mobileno   | city      | courseno | score |
++-------+---------+--------+------------+------------+-----------+----------+-------+
+|   123 | magesh  | m      | 2022-09-08 | 1234567891 | chennai   | c1       |    95 |
+|   124 | reshma  | m      | 2004-09-08 | 1231231231 | bangalore | c1       |    45 |
+|   125 | nisha   | f      | 2008-09-18 | 1131231231 | hyderabad | c2       |    65 |
+|   191 | sathish | f      | 2002-02-22 | 1423123423 | salem     | c2       |    99 |
+|   200 | gans    | m      | 1997-08-09 | 1233456644 | chennai   | c1       |    56 |
++-------+---------+--------+------------+------------+-----------+----------+-------+
+5 rows in set (0.00 sec)
