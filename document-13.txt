@@ -1,0 +1,193 @@
+mysql> USE sss;
+Database changed
+mysql> select*from sss;
++---------+---------+----------+----------+------+
+| roll_no | name    | address  | number   | age  |
++---------+---------+----------+----------+------+
+|       1 | harsh   | delhi    | 55654554 |   18 |
+|       2 | pratik  | bihar    | 54964848 |   19 |
+|       3 | riyanka | siliguri | 79588778 |   20 |
+|       4 | niraj   | alipur   | 89875454 |   18 |
++---------+---------+----------+----------+------+
+4 rows in set (0.00 sec)
+
+mysql> delete from sss where roll_no=4;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from sss;
++---------+---------+----------+----------+------+
+| roll_no | name    | address  | number   | age  |
++---------+---------+----------+----------+------+
+|       1 | harsh   | delhi    | 55654554 |   18 |
+|       2 | pratik  | bihar    | 54964848 |   19 |
+|       3 | riyanka | siliguri | 79588778 |   20 |
++---------+---------+----------+----------+------+
+3 rows in set (0.00 sec)
+
+mysql> select*rollback;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rollback' at line 1
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select*from sss;
++---------+---------+----------+----------+------+
+| roll_no | name    | address  | number   | age  |
++---------+---------+----------+----------+------+
+|       1 | harsh   | delhi    | 55654554 |   18 |
+|       2 | pratik  | bihar    | 54964848 |   19 |
+|       3 | riyanka | siliguri | 79588778 |   20 |
++---------+---------+----------+----------+------+
+3 rows in set (0.00 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT*FROM sss;
++---------+---------+----------+----------+------+
+| roll_no | name    | address  | number   | age  |
++---------+---------+----------+----------+------+
+|       1 | harsh   | delhi    | 55654554 |   18 |
+|       2 | pratik  | bihar    | 54964848 |   19 |
+|       3 | riyanka | siliguri | 79588778 |   20 |
++---------+---------+----------+----------+------+
+3 rows in set (0.00 sec)
+
+mysql> commit from sss where roll_no=3;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from sss where roll_no=3' at line 1
+mysql> select* from sss where roll_no=3;
++---------+---------+----------+----------+------+
+| roll_no | name    | address  | number   | age  |
++---------+---------+----------+----------+------+
+|       3 | riyanka | siliguri | 79588778 |   20 |
++---------+---------+----------+----------+------+
+1 row in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select*from sss;
++---------+---------+----------+----------+------+
+| roll_no | name    | address  | number   | age  |
++---------+---------+----------+----------+------+
+|       1 | harsh   | delhi    | 55654554 |   18 |
+|       2 | pratik  | bihar    | 54964848 |   19 |
+|       3 | riyanka | siliguri | 79588778 |   20 |
++---------+---------+----------+----------+------+
+3 rows in set (0.00 sec)
+
+mysql> delete from sss where roll_no=3;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from sss;
++---------+--------+---------+----------+------+
+| roll_no | name   | address | number   | age  |
++---------+--------+---------+----------+------+
+|       1 | harsh  | delhi   | 55654554 |   18 |
+|       2 | pratik | bihar   | 54964848 |   19 |
++---------+--------+---------+----------+------+
+2 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select*from sss;
++---------+--------+---------+----------+------+
+| roll_no | name   | address | number   | age  |
++---------+--------+---------+----------+------+
+|       1 | harsh  | delhi   | 55654554 |   18 |
+|       2 | pratik | bihar   | 54964848 |   19 |
++---------+--------+---------+----------+------+
+2 rows in set (0.00 sec)
+
+mysql> use Sstudent;
+Database changed
+mysql> select*from Sstudent;
++------+------+------+
+| reg  | name | dob  |
++------+------+------+
+|    1 | hee  |   20 |
+|    2 | see  |   18 |
++------+------+------+
+2 rows in set (0.00 sec)
+
+mysql> set autocommit =0;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delete from Sstudent where reg=1;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from Sstudent;
++------+------+------+
+| reg  | name | dob  |
++------+------+------+
+|    2 | see  |   18 |
++------+------+------+
+1 row in set (0.01 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select*from Sstudent;
++------+------+------+
+| reg  | name | dob  |
++------+------+------+
+|    1 | hee  |   20 |
+|    2 | see  |   18 |
++------+------+------+
+2 rows in set (0.00 sec)
+
+mysql> start transaction;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select*from Sstudent;
++------+------+------+
+| reg  | name | dob  |
++------+------+------+
+|    1 | hee  |   20 |
+|    2 | see  |   18 |
++------+------+------+
+2 rows in set (0.01 sec)
+
+mysql> update Sstudent set dob = dob+1;
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> savepoint samplesavepoint;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select*from Sstudent;
++------+------+------+
+| reg  | name | dob  |
++------+------+------+
+|    1 | hee  |   21 |
+|    2 | see  |   19 |
++------+------+------+
+2 rows in set (0.00 sec)
+
+mysql> SAVEPOINT SP1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delete Sstudent from where reg = 1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where reg = 1' at line 1
+mysql> delete from Sstudent  where reg = 1;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select* from Sstudent;
++------+------+------+
+| reg  | name | dob  |
++------+------+------+
+|    2 | see  |   19 |
++------+------+------+
+1 row in set (0.01 sec)
+
+mysql> rollback to SP1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select* from Sstudent;
++------+------+------+
+| reg  | name | dob  |
++------+------+------+
+|    1 | hee  |   21 |
+|    2 | see  |   19 |
++------+------+------+
+2 rows in set (0.01 sec)

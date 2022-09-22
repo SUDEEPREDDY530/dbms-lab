@@ -1,0 +1,28 @@
+mysql> CREATE database progress;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use progress;
+Database changed
+mysql> create table progress(sno int(5),name varchar(15),s1 int(5),s2 int(5),s3 int(5),s4 int(5),total int(5),performance varchar(5));
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into progress velues(1,'dp',20,20,20,20,80,'g');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'velues(1,'dp',20,20,20,20,80,'g')' at line 1
+mysql> insert into progress values(1,'dp',20,20,20,20,80,'g');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into progress values(2,'hee',25,20,10,25,80,'g');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into progress values(2,'hee',20,0,10,10,40,'b');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from progress;
++------+------+------+------+------+------+-------+-------------+
+| sno  | name | s1   | s2   | s3   | s4   | total | performance |
++------+------+------+------+------+------+-------+-------------+
+|    1 | dp   |   20 |   20 |   20 |   20 |    80 | g           |
+|    2 | hee  |   25 |   20 |   10 |   25 |    80 | g           |
+|    2 | hee  |   20 |    0 |   10 |   10 |    40 | b           |
++------+------+------+------+------+------+-------+-------------+
+3 rows in set (0.00 sec)
