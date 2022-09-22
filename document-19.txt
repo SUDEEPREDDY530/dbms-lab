@@ -1,0 +1,54 @@
+DATABASE MANAGEMENT SYSTEMS
+LAB ACTIVITY-19
+
+Write a PL/SQL program to handle user defined exception
+CODE:
+mysql> create procedure data_check()
+    -> begin
+    -> declare score1 int;
+    -> declare name1 varchar(15);
+    -> declare v_finish int default 0;
+    -> declare continue handler for not found set v_finish=1;
+    -> select name,score into name1,score1 from student where name = 'gans';
+    -> if v_finish = 1 then
+    ->  select 'no data';
+    -> else
+    ->  select name1,score1;
+    -> end if;
+    -> end;
+    -> $$
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call data_check();
+    -> $$
++-------+--------+
+| name1 | score1 |
++-------+--------+
+| gans  |     56 |
++-------+--------+
+
+mysql> create procedure data_check1()
+    -> begin
+    -> declare score1 int;
+    -> declare name1 varchar(15);
+    -> declare v_finish int default 0;
+    -> declare continue handler for not found set v_finish=1;
+    -> select name,score into name1,score1 from student where name = 'priyaa';
+    -> if v_finish = 1 then
+    ->  select 'no data';
+    -> else
+    ->  select name1,score1;
+    -> end if;
+    -> end;
+    -> $$
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call data_check1();
+    -> $$
++---------+
+| no data |
++---------+
+| no data |
++---------+
+1 row in set (0.00 sec)
+Query OK, 0 rows affected, 1 warning (0.01 sec)
