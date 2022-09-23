@@ -1,0 +1,98 @@
+DATABASE MANAGEMENT SYSTEMS
+LAB ACTIVITY-13,14,15
+Ex.No : 13
+
+Write PL/SQL function to check salar.
+
+CODE:
+
+mysql> delimiter //
+mysql> create function fun1(salary int(10)) returns text
+    -> begin
+    -> if salary>10000 then
+    -> return 'good';
+    -> else
+    -> return 'bad';
+    -> end if;
+    -> end//
+Query OK, 0 rows affected (0.13 sec)
+mysql> select fun1(5678);
+    -> //
++------------+
+| fun1(5678) |
++------------+
+| bad        |
++------------+
+1 row in set (0.12 sec)
+
+Ex.No : 14
+
+Write a procedure to display course details.
+
+CODE:
+
+mysql> create procedure p1()
+    -> begin
+    -> select * from course;
+    -> end//
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call p1();
+    -> //
++----------+---------------+------------+-------+--------+-------+
+| courseno | coursedesc    | coursetype | semno | hallno | facno |
++----------+---------------+------------+-------+--------+-------+
+| c1       | dbms          | c          | 2     | 3      | f1    |
+| c2       | ds            | c          | 1     | 4      | f2    |
+| c3       | networks      | c          | 3     | 5      | f3    |
+| c4       | r programming | c          | 1     | NULL   | f2    |
++----------+---------------+------------+-------+--------+-------+
+4 rows in set (0.03 sec)
+
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> select fun1(5678);
+    -> //
++------------+
+| fun1(5678) |
++------------+
+| bad        |
++------------+
+1 row in set (0.12 sec)
+
+
+ Ex.No : 15
+
+Create a trigger that will be executed whenever you insert values into the faculty table
+
+CODE:
+
+mysql> desc faculty;
+    -> //
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| facno    | varchar(4)  | NO   | PRI |         |       |
+| facname  | varchar(15) | YES  |     | NULL    |       |
+| gender   | char(1)     | YES  |     | NULL    |       |
+| dob      | date        | YES  |     | NULL    |       |
+| doj      | date        | YES  |     | NULL    |       |
+| mobileno | varchar(10) | YES  |     | NULL    |       |
+| deptno   | varchar(4)  | YES  | MUL | NULL    |       |
+| salary   | int(6)      | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+8 rows in set (0.17 sec)
+
+mysql> drop trigger t1;
+    -> //
+Query OK, 0 rows affected (0.00 sec)
+mysql> delimiter //
+mysql> create trigger t1 before insert on faculty
+    -> for each row
+    -> begin
+    -> set new.facname=upper(new.facname);
+    -> end//
+Query OK, 0 rows affected (0.08 sec)
+mysql> insert into faculty values('f7','padma','f','1999-09-09','2022-04-04','8756875698','d1',20000);
+    -> //
+Query OK, 1 row affected (0.04 sec)
